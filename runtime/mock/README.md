@@ -87,7 +87,7 @@ import (
 
 func TestGetNameShouldFail(t *testing.T) {
 	mock.MockByName("github.com/my/another_pkg", "getNameThroughHTTP", func(ctx context.Context, fn *core.FuncInfo, args, results core.Object) error {
-        results.FieldIndex(0).Set("failed")
+        results.GetFieldIndex(0).Set("failed")
 		return nil
 	})
     name := another_pkg.GetName()
@@ -140,7 +140,7 @@ func TestGetNameShouldFail(t *testing.T) {
     client := another_pkg.GetClient()
 
 	mock.MockMethodByName(client, "getNameThroughHTTP",func(ctx context.Context, fn *core.FuncInfo, args, results core.Object) error {
-        results.FieldIndex(0).Set("failed")
+        results.GetFieldIndex(0).Set("failed")
 		return nil
 	})
     name := client.GetName()
